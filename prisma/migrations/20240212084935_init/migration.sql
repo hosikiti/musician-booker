@@ -12,8 +12,8 @@ CREATE TABLE "Booking" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "userName" TEXT NOT NULL,
     "requestService" TEXT NOT NULL,
-    "sessionDate" DATETIME NOT NULL,
     "bookedDate" DATETIME NOT NULL,
+    "createdDate" DATETIME NOT NULL,
     "musicianId" INTEGER NOT NULL,
     CONSTRAINT "Booking_musicianId_fkey" FOREIGN KEY ("musicianId") REFERENCES "Musician" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );

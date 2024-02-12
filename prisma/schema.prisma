@@ -24,8 +24,8 @@ model Booking {
   id        Int     @id @default(autoincrement())
   userName String
   requestService String
-  sessionDate DateTime
   bookedDate DateTime
+  createdDate DateTime
   musician  Musician @relation(fields: [musicianId], references: [id])
   musicianId  Int
 }
