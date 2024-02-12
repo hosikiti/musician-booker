@@ -1,4 +1,4 @@
-import { usePrismaInRoute } from '@/app/lib/prisma';
+import { usePrismaInRoute } from '@/lib/prisma';
 
 interface GetResult {
     availableDates: string[];

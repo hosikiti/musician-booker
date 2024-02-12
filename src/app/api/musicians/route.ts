@@ -1,4 +1,19 @@
-import { usePrisma, usePrismaInRoute } from '@/app/lib/prisma';
+import { usePrismaInRoute } from '@/lib/prisma';
+
+export interface MusicianService {
+    name: string;
+}
+
+export interface Musician {
+    id: number;
+    name: string;
+    avatar: string;
+    services: MusicianService[];
+}
+
+export interface MusiciansResponse {
+    result: Musician[];
+}
 
 export async function GET(request: Request) {
     return usePrismaInRoute(async (prisma) => {
@@ -10,6 +25,9 @@ export async function GET(request: Request) {
                 services: true,
             },
         });
-        return Response.json({ result: musicians });
+        const resp: MusiciansResponse = {
+            result: musicians,
+        };
+        return Response.json(resp);
     });
 }
