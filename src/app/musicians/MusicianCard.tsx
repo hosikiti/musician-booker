@@ -1,4 +1,4 @@
-import { Musician } from '../api/musicians/route';
+import { Musician } from '@/types/musicians';
 import Image from 'next/image';
 
 type MusicianCardProps = {

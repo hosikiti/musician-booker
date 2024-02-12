@@ -1,15 +1,5 @@
+import { Musician } from '@/types/musicians';
 import { usePrismaInRoute } from '@/lib/prisma';
-
-export interface MusicianService {
-    name: string;
-}
-
-export interface Musician {
-    id: number;
-    name: string;
-    avatar: string;
-    services: MusicianService[];
-}
 
 export interface MusiciansResponse {
     result: Musician[];

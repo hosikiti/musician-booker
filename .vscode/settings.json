@@ -9,5 +9,6 @@
     },
     "prettier.singleQuote": true,
     "prettier.tabWidth": 4,
-    "css.lint.unknownAtRules": "ignore"
+    "css.lint.unknownAtRules": "ignore",
+    "typescript.preferences.importModuleSpecifier": "non-relative"
 }

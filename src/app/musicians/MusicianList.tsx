@@ -1,15 +1,11 @@
 'use client';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { Musician, MusiciansResponse } from '../api/musicians/route';
 import MusicianCard from './MusicianCard';
 import { useState } from 'react';
-
-const fetchMusicians = async () => {
-    return axios
-        .get<MusiciansResponse>('/api/musicians')
-        .then((res) => res.data);
-};
+import BookingFormDrawer from './BookingFormDrawer';
+import { Musician } from '@/types/musicians';
+import { getMusicians } from '@/lib/api/musicians/getMusicians';
 
 const createBooking = async (musicianId: number, name: string) => {
     return axios.post('/api/bookings', {
@@ -24,12 +20,10 @@ export default function MusicianList() {
     >(undefined);
     const { data, isLoading, isError } = useQuery({
         queryKey: ['fetchMusicians'],
-        queryFn: fetchMusicians,
+        queryFn: getMusicians,
     });
 
-    const handleBookSession = () => {
-        console.log('book session');
-    };
+    const handleBookSession = () => {};
 
     if (isLoading) {
         return <div>loading</div>;
@@ -40,7 +34,7 @@ export default function MusicianList() {
     }
 
     return (
-        <div className="flex flex-row">
+        <>
             <div className="flex flex-wrap gap-8">
                 {data?.result.map((musician) => (
                     <MusicianCard
@@ -53,14 +47,10 @@ export default function MusicianList() {
                 ))}
             </div>
 
-            {selectedMusician && (
-                <div className="bg-white shadow-md p-8 flex flex-col gap-4">
-                    <div>
-                        <span>What&apos;s your name?</span>
-                    </div>
-                    <button onClick={handleBookSession}>Book Session</button>
-                </div>
-            )}
-        </div>
+            <BookingFormDrawer
+                enabled={!!selectedMusician}
+                onClose={() => setSelectedMusician(undefined)}
+            ></BookingFormDrawer>
+        </>
     );
 }

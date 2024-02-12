@@ -17,6 +17,11 @@
 2. `npx prisma migrate dev --name init` to create the database
 2. `npm run seed` to insert initial data
 
+## changed 
+
+- use a drawler to show the booking form for better usability
+- responsive design
+
 ## memo
 
 - authentication should be added
