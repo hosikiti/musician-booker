@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Musician {
+  id    Int     @id @default(autoincrement())
+  name  String
+  enabled Boolean @default(false)
+  avatar String
+  schedule String
+  services Service[]
+  bookings Booking[]
+}
+
+model Booking {
+  id        Int     @id @default(autoincrement())
+  userName String
+  requestService String
+  sessionDate DateTime
+  bookedDate DateTime
+  musician  Musician @relation(fields: [musicianId], references: [id])
+  musicianId  Int
+}
+
+model Service {
+  id    Int     @id @default(autoincrement())
+  name  String
+  musicians Musician[]
+}
