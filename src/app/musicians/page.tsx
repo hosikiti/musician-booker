@@ -1,15 +1,22 @@
 import MusicianList from '@/app/musicians/MusicianList';
+import RecentBookedSessionList from '@/app/musicians/RecentBookedSessionList';
 
 export default function MusiciansPage() {
     return (
-        <section className="px-8 flex flex-col h-full justify-center">
-            <div className="my-8 flex flex-col gap-4">
-                <h1 className="text-2xl font-bold">
-                    Musician Booking Platform
-                </h1>
-                <h2>Select a musician</h2>
+        <section className="w-full md:w-[800px] px-8 flex flex-col h-[calc(100vh-64px)] justify-between items-stretch">
+            <div>
+                <div className="my-8 flex flex-col gap-4">
+                    <h1 className="text-2xl font-bold">
+                        Musician Booking Platform
+                    </h1>
+                    <h2>Select a musician</h2>
+                </div>
+                <MusicianList></MusicianList>
             </div>
-            <MusicianList></MusicianList>
+            <div className="">
+                <h2 className="font-bold">Sessions booked by people</h2>
+                <RecentBookedSessionList></RecentBookedSessionList>
+            </div>
         </section>
     );
 }

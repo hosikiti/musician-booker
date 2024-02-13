@@ -1,5 +1,5 @@
 'use client';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
 import MusicianCard from './MusicianCard';
 import { useState } from 'react';
@@ -10,6 +10,7 @@ import { PostBookingRequest } from '@/app/api/bookings/route';
 import { postBooking } from '@/lib/apiClient/bookings/postBooking';
 import { BookingFormValues } from '@/app/musicians/BookingForm';
 import BookingCompletedDrawer from '@/app/musicians/BookingCompletedDrawer';
+import LoadingSpinner from '@/components/loading/LoadingSpinner';
 
 export default function MusicianList() {
     const [selectedMusician, setSelectedMusician] = useState<
@@ -20,6 +21,7 @@ export default function MusicianList() {
         queryKey: ['fetchMusicians'],
         queryFn: getMusicians,
     });
+    const queryClient = useQueryClient();
 
     const postBookingMutation = useMutation<
         void,
@@ -34,17 +36,22 @@ export default function MusicianList() {
                 bookedDate: data.date,
             });
         },
+        onSuccess: () => {
+            setSelectedMusician(undefined);
+            setBookCompleted(true);
+            queryClient.invalidateQueries({ queryKey: ['getRecentBookings'] });
+        },
+        onError: (error) => {
+            // TODO
+        },
     });
 
     const handleBookSession = (formData: BookingFormValues) => {
-        // console.log(formData);
-        // postBookingMutation.mutate(formData);
-        setSelectedMusician(undefined);
-        setBookCompleted(true);
+        postBookingMutation.mutate(formData);
     };
 
     if (isLoading) {
-        return <div>loading</div>;
+        return <LoadingSpinner></LoadingSpinner>;
     }
 
     if (isError) {
@@ -53,7 +60,7 @@ export default function MusicianList() {
 
     return (
         <>
-            <div className="flex flex-wrap gap-8">
+            <div className="flex flex-wrap gap-8 items-start">
                 {data?.result.map((musician) => (
                     <MusicianCard
                         key={musician.id}

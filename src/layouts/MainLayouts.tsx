@@ -1,4 +1,4 @@
-import Header from '@/components/Header/Header';
+import Header from '@/components/header/Header';
 
 type MainLayoutProps = {
     children: React.ReactNode;
@@ -6,11 +6,9 @@ type MainLayoutProps = {
 
 export default function MainLayout({ children }: MainLayoutProps) {
     return (
-        <div className="h-full flex flex-col w-full ">
+        <div className="h-full flex flex-col w-full">
             <Header />
-            <div className="w-full md:w-[800px] flex justify-center">
-                {children}
-            </div>
+            <div className="w-full flex justify-center">{children}</div>
         </div>
     );
 }

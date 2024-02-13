@@ -2,6 +2,37 @@ import { createErrorResponse } from '@/app/api/common';
 import { usePrismaInRoute } from '@/lib/prisma';
 import { HttpStatusCode } from 'axios';
 
+export interface GetBookingsResponse {
+    bookings: {
+        id: number;
+        musician: {
+            id: number;
+            name: string;
+        };
+        userName: string;
+        requestService: string;
+        bookedDate: string;
+        createdDate: string;
+    }[];
+}
+
+export async function GET(request: Request) {
+    return usePrismaInRoute(async (prisma) => {
+        const bookings = await prisma.booking.findMany({
+            include: {
+                musician: true,
+            },
+            orderBy: {
+                createdDate: 'desc',
+            },
+        });
+
+        return Response.json({
+            bookings,
+        });
+    });
+}
+
 export interface PostBookingRequest {
     musicianId: number;
     userName: string;

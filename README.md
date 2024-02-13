@@ -22,6 +22,7 @@
 
 - use a drawler to show the booking form for better usability
 - responsive design
+- added "date" in addition to "time" for booking
 
 ## todo in the future
 
