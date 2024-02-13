@@ -3,6 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import * as datefns from 'date-fns';
 import ElevatedButton from '@/components/button/ElevatedButton';
 import { FieldWrapper } from '@/components/form/FieldWrapper';
+import Avatar from '@/components/avatar/Avatar';
 
 export interface BookingFormValues {
     musicianId: number;
@@ -37,6 +38,12 @@ export default function BookingForm({
     return (
         <>
             <form onSubmit={handleSubmit(submitHandler)}>
+                <div className="flex flex-row gap-2 items-start border-b mb-8">
+                    <Avatar src={musician.avatar} alt={musician.name} />
+                    <span className="text-lg font-bold mb-4">
+                        {musician.name}
+                    </span>
+                </div>
                 <div className="flex flex-col gap-4">
                     <FieldWrapper
                         label="What's your name?"
