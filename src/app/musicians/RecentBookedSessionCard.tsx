@@ -1,6 +1,6 @@
 import Alert from '@/components/alert/Alert';
+import { getDateLabel, getHourLabel } from '@/lib/date';
 import { Booking } from '@/types';
-import * as datefns from 'date-fns';
 
 type RecentBookedSessionCardProps = {
     booking: Booking;
@@ -9,13 +9,9 @@ type RecentBookedSessionCardProps = {
 export default function RecentBookedSessionCard({
     booking,
 }: RecentBookedSessionCardProps) {
-    const getDateLabel = (date: string) => {
-        const f = (format: string) => {
-            return datefns.format(new Date(date), format);
-        };
-
-        return `${f('hh:mm a')} on ${f('do MMMM yyyy')}`;
-    };
+    const dateLabel = `${getHourLabel(booking.bookedDate)} on ${getDateLabel(
+        booking.bookedDate
+    )}`;
 
     return (
         <Alert key={booking.id}>
@@ -26,7 +22,7 @@ export default function RecentBookedSessionCard({
                     {booking.musician.name}
                 </span>
                 {' at '}
-                {getDateLabel(booking.bookedDate)} for a{' '}
+                {dateLabel} for a{' '}
                 <span className="text-primary">
                     {booking.requestService} Session
                 </span>

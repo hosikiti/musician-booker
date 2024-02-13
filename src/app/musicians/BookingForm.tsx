@@ -1,9 +1,9 @@
 import { Musician } from '@/types';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import * as datefns from 'date-fns';
 import ElevatedButton from '@/components/button/ElevatedButton';
 import { FieldWrapper } from '@/components/form/FieldWrapper';
 import Avatar from '@/components/avatar/Avatar';
+import { getDateHours } from '@/lib/date';
 
 export interface BookingFormValues {
     musicianId: number;
@@ -37,6 +37,8 @@ export default function BookingForm({
         });
     };
 
+    const dateHours = getDateHours(availableDates);
+
     return (
         <>
             <form onSubmit={handleSubmit(submitHandler)}>
@@ -49,10 +51,7 @@ export default function BookingForm({
                 <div className="flex flex-col gap-4">
                     <FieldWrapper
                         label="What's your name?"
-                        errorMessage={
-                            formState.errors.userName &&
-                            formState.errors.userName.message
-                        }
+                        errorMessage={formState.errors.userName?.message}
                     >
                         <input
                             {...register('userName', {
@@ -73,50 +72,56 @@ export default function BookingForm({
                     </FieldWrapper>
                     <FieldWrapper
                         label="When?"
-                        errorMessage={
-                            formState.errors.date && 'Select at least one date'
-                        }
+                        errorMessage={formState.errors.date?.message}
                     >
-                        <div className="flex flex-wrap gap-2">
-                            {availableDates.map((date) => {
-                                const selected = date === selectedDate;
-                                const selectedStyle = 'btn-primary';
-                                const unselectedStyle = 'btn';
+                        {dateHours.map((dateHour) => {
+                            return (
+                                <div key={dateHour.dateLabel}>
+                                    <div className="mb-2">
+                                        {dateHour.dateLabel}
+                                    </div>
+                                    <div className="flex flex-wrap gap-2 mb-2">
+                                        {dateHour.hourLabels.map((hour) => {
+                                            const selected =
+                                                hour.date === selectedDate;
+                                            const selectedStyle = 'btn-primary';
+                                            const unselectedStyle = 'btn';
 
-                                const label = datefns.format(date, 'HH:mm');
-
-                                return (
-                                    <label
-                                        key={label}
-                                        className={`btn ${
-                                            selected
-                                                ? selectedStyle
-                                                : unselectedStyle
-                                        }`}
-                                    >
-                                        {label}
-                                        <input
-                                            type="radio"
-                                            className="hidden"
-                                            value={date}
-                                            {...register('date', {
-                                                required: true,
-                                            })}
-                                        ></input>
-                                    </label>
-                                );
-                            })}
-                        </div>
+                                            return (
+                                                <label
+                                                    key={hour.date}
+                                                    className={`btn ${
+                                                        selected
+                                                            ? selectedStyle
+                                                            : unselectedStyle
+                                                    }`}
+                                                >
+                                                    {hour.label}
+                                                    <input
+                                                        type="radio"
+                                                        className="hidden"
+                                                        value={hour.date}
+                                                        {...register('date', {
+                                                            required:
+                                                                'Select at least one date',
+                                                        })}
+                                                    ></input>
+                                                </label>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </FieldWrapper>
                     <FieldWrapper
                         label="Which Instrument?"
-                        errorMessage={
-                            formState.errors.service &&
-                            'Select instrument for the session'
-                        }
+                        errorMessage={formState.errors.service?.message}
                     >
                         <select
-                            {...register('service', { required: true })}
+                            {...register('service', {
+                                required: 'Select instrument for the session',
+                            })}
                             className="select w-full max-w-xs"
                             data-testid="service"
                         >

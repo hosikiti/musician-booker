@@ -10,7 +10,7 @@ export const FieldWrapper = ({
     errorMessage,
 }: FieldWrapperProps) => (
     <div className="mb-4 flex flex-col gap-2">
-        <label className="text-lg font-bold">{label}</label>
+        <label className="font-bold">{label}</label>
         {children}
         <div role="alert" className="text-sm text-error">
             {errorMessage}
