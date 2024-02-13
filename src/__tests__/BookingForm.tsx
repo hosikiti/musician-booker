@@ -1,6 +1,8 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import BookingForm from '../app/musicians/BookingForm';
+import BookingForm, {
+    BOOKING_FORM_MAX_NAME_LENGTH,
+} from '../app/musicians/BookingForm';
 import { Musician } from '../types';
 import userEvent from '@testing-library/user-event';
 import * as datefns from 'date-fns';
@@ -54,10 +56,10 @@ describe('BookingForm', () => {
         };
     };
 
-    const inputUserName = async () => {
+    const inputUserName = async (name = 'John Doe') => {
         const nameInput = screen.getByTestId('userName');
         await userEvent.clear(nameInput);
-        await userEvent.type(nameInput, 'John Doe');
+        await userEvent.type(nameInput, name);
     };
 
     const selectDate = async (date: string) => {
@@ -153,6 +155,22 @@ describe('BookingForm', () => {
 
         // Assert
         expect(errors).toEqual(['Select instrument for the session']);
+        expect(handleSubmit).not.toHaveBeenCalled();
+    });
+
+    it('shows an error when submitting with too long name', async () => {
+        // Arrange
+        const { handleSubmit, dateLabels, instrumentsLabels } = setupForm();
+
+        // Act
+        await inputUserName('a'.repeat(BOOKING_FORM_MAX_NAME_LENGTH + 1));
+        await selectDate(dateLabels[0]);
+        await selectInstrument(instrumentsLabels[0]);
+        await clickSubmit();
+        const errors = await getValidationErrors();
+
+        // Assert
+        expect(errors).toEqual(['Input name less than 32 characters']);
         expect(handleSubmit).not.toHaveBeenCalled();
     });
 });

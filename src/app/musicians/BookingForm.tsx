@@ -12,6 +12,8 @@ export interface BookingFormValues {
     service: string;
 }
 
+export const BOOKING_FORM_MAX_NAME_LENGTH = 32;
+
 type BookingFormProps = {
     musician: Musician;
     availableDates: string[];
@@ -48,11 +50,21 @@ export default function BookingForm({
                     <FieldWrapper
                         label="What's your name?"
                         errorMessage={
-                            formState.errors.userName && 'Input your name'
+                            formState.errors.userName &&
+                            formState.errors.userName.message
                         }
                     >
                         <input
-                            {...register('userName', { required: true })}
+                            {...register('userName', {
+                                required: {
+                                    value: true,
+                                    message: 'Input your name',
+                                },
+                                maxLength: {
+                                    value: BOOKING_FORM_MAX_NAME_LENGTH,
+                                    message: `Input name less than ${BOOKING_FORM_MAX_NAME_LENGTH} characters`,
+                                },
+                            })}
                             type="text"
                             className="input"
                             placeholder='e.g. "John Doe"'
