@@ -18,12 +18,14 @@ type BookingFormProps = {
 type FieldWrapperProps = {
     label: string;
     children: React.ReactNode;
+    errorMessage?: string;
 };
 
-const FieldWrapper = ({ label, children }: FieldWrapperProps) => (
+const FieldWrapper = ({ label, children, errorMessage }: FieldWrapperProps) => (
     <div className="mb-4 flex flex-col gap-2">
         <label className="text-lg font-bold">{label}</label>
         {children}
+        <div className="text-sm text-error">{errorMessage}</div>
     </div>
 );
 
@@ -32,20 +34,28 @@ export default function BookingForm({
     availableDates,
     musician,
 }: BookingFormProps) {
-    const { register, handleSubmit, watch } = useForm<BookingFormValues>();
+    const { register, handleSubmit, watch, formState } =
+        useForm<BookingFormValues>();
 
     const selectedDate = watch('date');
 
     const submitHandler: SubmitHandler<BookingFormValues> = (data) => {
-        alert('submit:' + JSON.stringify(data));
-        onSubmit(data);
+        onSubmit({
+            ...data,
+            musicianId: musician.id,
+        });
     };
 
     return (
         <>
             <form onSubmit={handleSubmit(submitHandler)}>
                 <div className="flex flex-col gap-4">
-                    <FieldWrapper label="What's your name?">
+                    <FieldWrapper
+                        label="What's your name?"
+                        errorMessage={
+                            formState.errors.userName && 'Input your name'
+                        }
+                    >
                         <input
                             {...register('userName', { required: true })}
                             type="text"
@@ -53,7 +63,12 @@ export default function BookingForm({
                             placeholder='e.g. "John Doe"'
                         ></input>
                     </FieldWrapper>
-                    <FieldWrapper label="When?">
+                    <FieldWrapper
+                        label="When?"
+                        errorMessage={
+                            formState.errors.date && 'Select at least one date'
+                        }
+                    >
                         <div className="flex flex-wrap gap-2">
                             {availableDates.map((date) => {
                                 const selected = date === selectedDate;
@@ -87,12 +102,18 @@ export default function BookingForm({
                             })}
                         </div>
                     </FieldWrapper>
-                    <FieldWrapper label="Which Instrument?">
+                    <FieldWrapper
+                        label="Which Instrument?"
+                        errorMessage={
+                            formState.errors.service &&
+                            'Select instrument for the session'
+                        }
+                    >
                         <select
-                            {...register('service')}
+                            {...register('service', { required: true })}
                             className="select select-bordered w-full max-w-xs"
                         >
-                            <option disabled selected>
+                            <option disabled selected value={''}>
                                 Select Instrument ...
                             </option>
                             {musician.services.map((service) => (

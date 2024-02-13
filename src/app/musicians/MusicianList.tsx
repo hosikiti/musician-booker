@@ -1,6 +1,6 @@
 'use client';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import MusicianCard from './MusicianCard';
 import { useState } from 'react';
 import BookingFormDrawer from './BookingFormDrawer';
@@ -19,19 +19,24 @@ export default function MusicianList() {
         queryFn: getMusicians,
     });
 
-    const postBookingMutation = useMutation<void>({
-        mutationFn: async () => {
+    const postBookingMutation = useMutation<
+        void,
+        AxiosError,
+        BookingFormValues
+    >({
+        mutationFn: async (data: BookingFormValues) => {
             await postBooking({
-                musicianId: selectedMusician?.id,
-                userName: 'test user',
-                requestService: selectedMusician?.services[0].name,
-                bookedDate: new Date().toISOString(),
-            } as PostBookingRequest);
+                musicianId: data.musicianId,
+                userName: data.userName,
+                requestService: data.service,
+                bookedDate: data.date,
+            });
         },
     });
 
-    const handleBookSession = (data: BookingFormValues) => {
-        postBookingMutation.mutate();
+    const handleBookSession = (formData: BookingFormValues) => {
+        alert(`${JSON.stringify(formData)}`);
+        // postBookingMutation.mutate(formData);
     };
 
     if (isLoading) {

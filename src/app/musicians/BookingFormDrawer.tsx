@@ -22,15 +22,6 @@ export default function BookingFormDrawer({
         enabled: !!musician,
     });
 
-    const handleBookSession = () => {
-        // onSubmit({
-        //     musicianId: musician?.id || 0,
-        //     userName: 'test user',
-        //     date: new Date().toISOString(),
-        //     service: 'test service',
-        // });
-    };
-
     return (
         <div className="drawer drawer-end">
             <input
