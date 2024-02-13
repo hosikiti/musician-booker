@@ -2,6 +2,11 @@ import { createErrorResponse } from '@/app/api/common';
 import { usePrismaInRoute } from '@/lib/prisma';
 import { HttpStatusCode } from 'axios';
 
+export interface GetBookingsRequest {
+    limit: number;
+    offset: number;
+}
+
 export interface GetBookingsResponse {
     bookings: {
         id: number;
@@ -16,8 +21,19 @@ export interface GetBookingsResponse {
     }[];
 }
 
+const GET_BOOKINGS_DEFAULT_LIMIT = 5;
+const GET_BOOKINGS_DEFAULT_OFFSET = 0;
+
 export async function GET(request: Request) {
     return usePrismaInRoute(async (prisma) => {
+        const { searchParams } = new URL(request.url);
+        const offset =
+            parseInt(searchParams.get('offset') || '') ||
+            GET_BOOKINGS_DEFAULT_OFFSET;
+        const limit =
+            parseInt(searchParams.get('limit') || '') ||
+            GET_BOOKINGS_DEFAULT_LIMIT;
+
         const bookings = await prisma.booking.findMany({
             include: {
                 musician: true,
@@ -25,6 +41,8 @@ export async function GET(request: Request) {
             orderBy: {
                 createdDate: 'desc',
             },
+            skip: offset,
+            take: limit,
         });
 
         return Response.json({

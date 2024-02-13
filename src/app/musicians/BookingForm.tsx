@@ -49,6 +49,7 @@ export default function BookingForm({
                             type="text"
                             className="input input-bordered"
                             placeholder='e.g. "John Doe"'
+                            data-testid="userName"
                         ></input>
                     </FieldWrapper>
                     <FieldWrapper
@@ -66,26 +67,24 @@ export default function BookingForm({
                                 const label = datefns.format(date, 'HH:mm');
 
                                 return (
-                                    <>
-                                        <label
-                                            className={`btn ${
-                                                selected
-                                                    ? selectedStyle
-                                                    : unselectedStyle
-                                            }`}
-                                        >
-                                            {label}
-                                            <input
-                                                key={date}
-                                                type="radio"
-                                                className="hidden"
-                                                value={date}
-                                                {...register('date', {
-                                                    required: true,
-                                                })}
-                                            ></input>
-                                        </label>
-                                    </>
+                                    <label
+                                        key={label}
+                                        className={`btn ${
+                                            selected
+                                                ? selectedStyle
+                                                : unselectedStyle
+                                        }`}
+                                    >
+                                        {label}
+                                        <input
+                                            type="radio"
+                                            className="hidden"
+                                            value={date}
+                                            {...register('date', {
+                                                required: true,
+                                            })}
+                                        ></input>
+                                    </label>
                                 );
                             })}
                         </div>
@@ -100,10 +99,9 @@ export default function BookingForm({
                         <select
                             {...register('service', { required: true })}
                             className="select select-bordered w-full max-w-xs"
+                            data-testid="service"
                         >
-                            <option disabled selected value={''}>
-                                Select Instrument ...
-                            </option>
+                            <option value={''}>Select Instrument ...</option>
                             {musician.services.map((service) => (
                                 <option key={service.name} value={service.name}>
                                     {service.name}
@@ -113,7 +111,7 @@ export default function BookingForm({
                     </FieldWrapper>
                 </div>
                 <ElevatedButton type="submit" className="btn-primary">
-                    Book Section
+                    Book Session
                 </ElevatedButton>
             </form>
         </>

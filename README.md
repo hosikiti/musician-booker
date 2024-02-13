@@ -38,3 +38,4 @@
 - authentication should be added
 - each musician's timezone needs to be considered
 - multi language support
+- dark mode support
