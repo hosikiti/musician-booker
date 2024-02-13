@@ -1,6 +1,6 @@
 import { usePrismaInRoute } from '@/lib/prisma';
 
-interface GetResult {
+export interface MusicianAvailabilityResponse {
     availableDates: string[];
 }
 
@@ -51,12 +51,8 @@ export async function GET(
             (date) => !bookedSet.has(date)
         );
 
-        const result: GetResult = {
-            availableDates,
-        };
-
         return Response.json({
-            result,
+            availableDates,
         });
     });
 }

@@ -2,7 +2,7 @@
 
 ## Technologies Used
 
-- Next.js
+- Next.js for both front-end and back-end APIs
 - Tailwind CSS for efficient styling and organized components
 - Prisma (ORM)
 - SQLite
@@ -10,6 +10,7 @@
 - Axios
 - React Hook Form
 - DaisyUI
+- date-fns for date format & manipulation
 
 ## Getting Started
 
@@ -22,7 +23,7 @@
 - use a drawler to show the booking form for better usability
 - responsive design
 
-## memo
+## todo in the future
 
 - authentication should be added
 - each musician's timezone needs to be considered

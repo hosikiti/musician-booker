@@ -1,18 +1,14 @@
 'use client';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import MusicianCard from './MusicianCard';
 import { useState } from 'react';
 import BookingFormDrawer from './BookingFormDrawer';
 import { Musician } from '@/types/musicians';
-import { getMusicians } from '@/lib/api/musicians/getMusicians';
-
-const createBooking = async (musicianId: number, name: string) => {
-    return axios.post('/api/bookings', {
-        musicianId,
-        name,
-    });
-};
+import { getMusicians } from '@/lib/apiClient/musicians/getMusicians';
+import { PostBookingRequest } from '@/app/api/bookings/route';
+import { postBooking } from '@/lib/apiClient/bookings/postBooking';
+import { BookingFormValues } from '@/app/musicians/BookingForm';
 
 export default function MusicianList() {
     const [selectedMusician, setSelectedMusician] = useState<
@@ -23,7 +19,20 @@ export default function MusicianList() {
         queryFn: getMusicians,
     });
 
-    const handleBookSession = () => {};
+    const postBookingMutation = useMutation<void>({
+        mutationFn: async () => {
+            await postBooking({
+                musicianId: selectedMusician?.id,
+                userName: 'test user',
+                requestService: selectedMusician?.services[0].name,
+                bookedDate: new Date().toISOString(),
+            } as PostBookingRequest);
+        },
+    });
+
+    const handleBookSession = (data: BookingFormValues) => {
+        postBookingMutation.mutate();
+    };
 
     if (isLoading) {
         return <div>loading</div>;
@@ -48,8 +57,9 @@ export default function MusicianList() {
             </div>
 
             <BookingFormDrawer
-                enabled={!!selectedMusician}
+                musician={selectedMusician}
                 onClose={() => setSelectedMusician(undefined)}
+                onSubmit={handleBookSession}
             ></BookingFormDrawer>
         </>
     );
