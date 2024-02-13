@@ -1,3 +1,5 @@
+import OutlineButton from '@/components/button/OutlineButton';
+
 type BookingCompletedDrawerProps = {
     enabled: boolean;
     onClose: () => void;
@@ -28,9 +30,7 @@ export default function BookingCompletedDrawer({
                         <h2 className="text-xl font-bold mb-4">All good!</h2>
                         <p>Your session was added to the list</p>
                     </div>
-                    <button className="btn btn-outline" onClick={onClose}>
-                        Close
-                    </button>
+                    <OutlineButton onClick={onClose}>Close</OutlineButton>
                 </div>
             </div>
         </div>

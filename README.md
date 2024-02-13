@@ -33,6 +33,8 @@
 
 ## todo in the future
 
+- a musician might want to specify an instrument to display as the default in the list
 - recent bookings may be displayed somewhere else because the musicians list could be come very long and the recent bookings may be out of the screen easily.
 - authentication should be added
 - each musician's timezone needs to be considered
+- multi language support
