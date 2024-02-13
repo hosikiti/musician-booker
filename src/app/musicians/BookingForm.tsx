@@ -1,6 +1,7 @@
 import { Musician } from '@/types/musicians';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as datefns from 'date-fns';
+import Button from '@/components/button/Button';
 
 export interface BookingFormValues {
     musicianId: number;
@@ -124,12 +125,7 @@ export default function BookingForm({
                         </select>
                     </FieldWrapper>
                 </div>
-                <button
-                    type="submit"
-                    className="btn btn-primary w-full max-w-xs"
-                >
-                    Book Session
-                </button>
+                <Button type="submit">Book Section</Button>
             </form>
         </>
     );

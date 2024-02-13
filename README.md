@@ -9,7 +9,7 @@
 - React Query
 - Axios
 - React Hook Form
-- DaisyUI
+- DaisyUI for decent UI components, including drawer and avatar.
 - date-fns for date format & manipulation
 
 ## Getting Started
@@ -26,5 +26,6 @@
 
 ## todo in the future
 
+- recent bookings may be displayed somewhere else because the musicians list could be come very long and the recent bookings may be out of the screen easily.
 - authentication should be added
 - each musician's timezone needs to be considered

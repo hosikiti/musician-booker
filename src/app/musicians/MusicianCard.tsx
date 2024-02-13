@@ -9,17 +9,23 @@ type MusicianCardProps = {
 export default function MusicianCard({ musician, onClick }: MusicianCardProps) {
     return (
         <div
-            className="p-8 bg-white shadow-md rounded-lg flex flex-col items-cente cursor-pointer"
+            className="p-8 bg-white shadow-lg rounded-lg flex flex-col items-center cursor-pointer w-full md:w-[30%]"
             onClick={onClick}
         >
-            <Image
-                src={musician.avatar}
-                alt="musician"
-                width={100}
-                height={100}
-            ></Image>
-            <span className="text-lg">{musician.name}</span>
-            <span className="">{musician.services[0].name}</span>
+            <div className="avatar mb-4">
+                <div className="w-[120px] mask mask-squircle">
+                    <Image
+                        src={musician.avatar}
+                        alt="musician"
+                        width={120}
+                        height={120}
+                    ></Image>
+                </div>
+            </div>
+            <span className="text-lg font-bold">{musician.name}</span>
+            <span className="text-primary text-sm">
+                {musician.services[0].name}
+            </span>
         </div>
     );
 }

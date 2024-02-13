@@ -6,9 +6,9 @@ type MainLayoutProps = {
 
 export default function MainLayout({ children }: MainLayoutProps) {
     return (
-        <div className="h-full flex flex-col w-full">
+        <div className="h-full flex flex-col w-full items-center">
             <Header />
-            <div className="w-full flex justify-center">{children}</div>
+            <div className=" flex justify-center">{children}</div>
         </div>
     );
 }

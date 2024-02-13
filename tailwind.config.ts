@@ -21,9 +21,13 @@ const config: Config = {
             {
                 light: {
                     ...require('daisyui/src/theming/themes')['light'],
-                    primary: 'blue',
+                    primary: '#DE6139',
+                    'primary-content': '#ffffff',
                     secondary: 'teal',
+                    neutral: '#808080',
                     'base-100': '#F3F4F6',
+                    'base-content': '#374151',
+                    'accent-content': '#131313',
                 },
             },
         ],

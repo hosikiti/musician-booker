@@ -16,7 +16,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" className="text-base-content">
             <body className={inter.className} suppressHydrationWarning={true}>
                 <ReactQueryProvider>{children}</ReactQueryProvider>
             </body>
