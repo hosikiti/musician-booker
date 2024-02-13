@@ -1,4 +1,4 @@
-import { Musician } from '@/types/musicians';
+import { Musician } from '@/types';
 import { usePrismaInRoute } from '@/lib/prisma';
 
 export interface MusiciansResponse {

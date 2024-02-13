@@ -1,4 +1,4 @@
-import { Musician } from '@/types/musicians';
+import { Musician } from '@/types';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as datefns from 'date-fns';
 import ElevatedButton from '@/components/button/ElevatedButton';

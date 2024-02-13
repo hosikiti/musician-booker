@@ -1,9 +1,8 @@
 'use client';
-import Alert from '@/components/alert/Alert';
+import RecentBookedSessionCard from '@/app/musicians/RecentBookedSessionCard';
 import LoadingSpinner from '@/components/loading/LoadingSpinner';
 import { getBookings } from '@/lib/apiClient/bookings/getBookings';
 import { useQuery } from '@tanstack/react-query';
-import * as datefns from 'date-fns';
 
 export default function RecentBookedSessionList() {
     const { data, isError, isLoading } = useQuery({
@@ -12,14 +11,6 @@ export default function RecentBookedSessionList() {
             return getBookings();
         },
     });
-
-    const getDateLabel = (date: string) => {
-        const f = (format: string) => {
-            return datefns.format(new Date(date), format);
-        };
-
-        return `${f('hh:mm a')} on ${f('do MMMM yyyy')}`;
-    };
 
     if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>;
@@ -35,22 +26,10 @@ export default function RecentBookedSessionList() {
             {data && data.bookings.length > 0 && (
                 <div className="flex flex-col gap-2">
                     {data.bookings.map((booking) => (
-                        <Alert key={booking.id}>
-                            <p className="text-sm text-base-300">
-                                <span className="text-base-content">
-                                    {booking.userName}
-                                </span>{' '}
-                                booked{' '}
-                                <span className="text-base-content">
-                                    {booking.musician.name}
-                                </span>
-                                {' at '}
-                                {getDateLabel(booking.bookedDate)} for a{' '}
-                                <span className="text-primary">
-                                    {booking.requestService} Session
-                                </span>
-                            </p>
-                        </Alert>
+                        <RecentBookedSessionCard
+                            key={booking.id}
+                            booking={booking}
+                        ></RecentBookedSessionCard>
                     ))}
                 </div>
             )}

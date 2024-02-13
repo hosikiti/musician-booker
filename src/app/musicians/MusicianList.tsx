@@ -4,7 +4,7 @@ import axios, { AxiosError } from 'axios';
 import MusicianCard from './MusicianCard';
 import { useState } from 'react';
 import BookingFormDrawer from './BookingFormDrawer';
-import { Musician } from '@/types/musicians';
+import { Musician } from '@/types';
 import { getMusicians } from '@/lib/apiClient/musicians/getMusicians';
 import { PostBookingRequest } from '@/app/api/bookings/route';
 import { postBooking } from '@/lib/apiClient/bookings/postBooking';

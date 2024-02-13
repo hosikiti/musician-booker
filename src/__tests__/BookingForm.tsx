@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import BookingForm from '../app/musicians/BookingForm';
-import { Musician } from '../types/musicians';
+import { Musician } from '../types';
 import userEvent from '@testing-library/user-event';
 import * as datefns from 'date-fns';
 

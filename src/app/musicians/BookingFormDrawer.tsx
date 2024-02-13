@@ -1,9 +1,10 @@
 import { MusicianAvailabilityResponse } from '@/app/api/musicians/[id]/availability/route';
 import BookingForm, { BookingFormValues } from '@/app/musicians/BookingForm';
 import NotAvailableForm from '@/app/musicians/NotAvailableForm';
+import Drawer from '@/components/drawer/Drawer';
 import LoadingSpinner from '@/components/loading/LoadingSpinner';
 import { getMusicianAvailability } from '@/lib/apiClient/availability/getMusicianAvailability';
-import { Musician } from '@/types/musicians';
+import { Musician } from '@/types';
 import { useQueries, useQuery } from '@tanstack/react-query';
 
 type BookingFormDrawerProps = {
@@ -55,26 +56,8 @@ export default function BookingFormDrawer({
     };
 
     return (
-        <div className="drawer drawer-end">
-            <input
-                id="booking-form-drawer"
-                type="checkbox"
-                checked={!!musician}
-                className="drawer-toggle"
-                onChange={() => {}}
-            />
-            <div className="drawer-side">
-                <label
-                    htmlFor="booking-form-drawer"
-                    aria-label="close sidebar"
-                    className="drawer-overlay"
-                    onClick={onClose}
-                ></label>
-                <div className="bg-white menu p-8 w-80 min-h-full text-base-content flex flex-col justify-between">
-                    {/* Sidebar content here */}
-                    {buildContents(musician, availability)}
-                </div>
-            </div>
-        </div>
+        <Drawer id="booking-form-drawer" enabled={!!musician} onClose={onClose}>
+            {buildContents(musician, availability)}
+        </Drawer>
     );
 }

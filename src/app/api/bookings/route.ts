@@ -1,5 +1,6 @@
 import { createErrorResponse } from '@/app/api/common';
 import { usePrismaInRoute } from '@/lib/prisma';
+import { Booking } from '@/types';
 import { HttpStatusCode } from 'axios';
 
 export interface GetBookingsRequest {
@@ -8,17 +9,7 @@ export interface GetBookingsRequest {
 }
 
 export interface GetBookingsResponse {
-    bookings: {
-        id: number;
-        musician: {
-            id: number;
-            name: string;
-        };
-        userName: string;
-        requestService: string;
-        bookedDate: string;
-        createdDate: string;
-    }[];
+    bookings: Booking[];
 }
 
 const GET_BOOKINGS_DEFAULT_LIMIT = 5;

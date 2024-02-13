@@ -27,6 +27,7 @@
 ## todo for me 
 
 - [ ] add tests
+- [ ] API error handling
 - [ ] refactor the code
 - [ ] add more comments
 - [ ] write README

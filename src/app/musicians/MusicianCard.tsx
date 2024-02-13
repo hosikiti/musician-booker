@@ -1,4 +1,4 @@
-import { Musician } from '@/types/musicians';
+import { Musician } from '@/types';
 import Image from 'next/image';
 
 type MusicianCardProps = {
