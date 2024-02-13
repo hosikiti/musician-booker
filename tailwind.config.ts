@@ -13,6 +13,12 @@ const config: Config = {
                 'gradient-conic':
                     'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
             },
+            colors: {
+                brand: {
+                    25: '#FDF7F4',
+                    300: '#EDA892',
+                },
+            },
         },
     },
     plugins: [require('daisyui')],
@@ -26,6 +32,7 @@ const config: Config = {
                     secondary: 'teal',
                     neutral: '#808080',
                     'base-100': '#F3F4F6',
+                    'base-300': '#6B7280',
                     'base-content': '#374151',
                     'accent-content': '#131313',
                 },

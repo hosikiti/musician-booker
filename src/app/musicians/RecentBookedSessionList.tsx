@@ -1,4 +1,5 @@
 'use client';
+import Alert from '@/components/alert/Alert';
 import LoadingSpinner from '@/components/loading/LoadingSpinner';
 import { getBookings } from '@/lib/apiClient/bookings/getBookings';
 import { useQuery } from '@tanstack/react-query';
@@ -32,19 +33,24 @@ export default function RecentBookedSessionList() {
                 </div>
             )}
             {data && data.bookings.length > 0 && (
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
                     {data.bookings.map((booking) => (
-                        <div key={booking.id} className="">
-                            <p className="text-sm text-slate-500">
-                                {booking.userName} booked{' '}
-                                {booking.musician.name}
+                        <Alert key={booking.id}>
+                            <p className="text-sm text-base-300">
+                                <span className="text-base-content">
+                                    {booking.userName}
+                                </span>{' '}
+                                booked{' '}
+                                <span className="text-base-content">
+                                    {booking.musician.name}
+                                </span>
                                 {' at '}
                                 {getDateLabel(booking.bookedDate)} for a{' '}
                                 <span className="text-primary">
                                     {booking.requestService} Session
                                 </span>
                             </p>
-                        </div>
+                        </Alert>
                     ))}
                 </div>
             )}

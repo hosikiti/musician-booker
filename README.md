@@ -24,6 +24,13 @@
 - responsive design
 - added "date" in addition to "time" for booking
 
+## todo for me 
+
+- [ ] add tests
+- [ ] refactor the code
+- [ ] add more comments
+- [ ] write README
+
 ## todo in the future
 
 - recent bookings may be displayed somewhere else because the musicians list could be come very long and the recent bookings may be out of the screen easily.
