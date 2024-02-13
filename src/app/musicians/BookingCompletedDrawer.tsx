@@ -17,6 +17,7 @@ export default function BookingCompletedDrawer({
                 checked={enabled}
                 className="drawer-toggle"
                 onClick={onClose}
+                onChange={() => {}}
             />
             <div className="drawer-side">
                 <label

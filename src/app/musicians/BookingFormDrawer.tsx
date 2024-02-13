@@ -61,6 +61,7 @@ export default function BookingFormDrawer({
                 type="checkbox"
                 checked={!!musician}
                 className="drawer-toggle"
+                onChange={() => {}}
             />
             <div className="drawer-side">
                 <label
