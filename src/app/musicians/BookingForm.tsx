@@ -2,6 +2,7 @@ import { Musician } from '@/types/musicians';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as datefns from 'date-fns';
 import Button from '@/components/button/Button';
+import { FieldWrapper } from '@/components/form/FieldWrapper';
 
 export interface BookingFormValues {
     musicianId: number;
@@ -15,20 +16,6 @@ type BookingFormProps = {
     availableDates: string[];
     onSubmit: (data: BookingFormValues) => void;
 };
-
-type FieldWrapperProps = {
-    label: string;
-    children: React.ReactNode;
-    errorMessage?: string;
-};
-
-const FieldWrapper = ({ label, children, errorMessage }: FieldWrapperProps) => (
-    <div className="mb-4 flex flex-col gap-2">
-        <label className="text-lg font-bold">{label}</label>
-        {children}
-        <div className="text-sm text-error">{errorMessage}</div>
-    </div>
-);
 
 export default function BookingForm({
     onSubmit,
