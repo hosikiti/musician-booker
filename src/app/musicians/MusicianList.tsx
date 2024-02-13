@@ -9,11 +9,13 @@ import { getMusicians } from '@/lib/apiClient/musicians/getMusicians';
 import { PostBookingRequest } from '@/app/api/bookings/route';
 import { postBooking } from '@/lib/apiClient/bookings/postBooking';
 import { BookingFormValues } from '@/app/musicians/BookingForm';
+import BookingCompletedDrawer from '@/app/musicians/BookingCompletedDrawer';
 
 export default function MusicianList() {
     const [selectedMusician, setSelectedMusician] = useState<
         Musician | undefined
     >(undefined);
+    const [bookCompleted, setBookCompleted] = useState(false);
     const { data, isLoading, isError } = useQuery({
         queryKey: ['fetchMusicians'],
         queryFn: getMusicians,
@@ -35,8 +37,10 @@ export default function MusicianList() {
     });
 
     const handleBookSession = (formData: BookingFormValues) => {
-        alert(`${JSON.stringify(formData)}`);
+        // console.log(formData);
         // postBookingMutation.mutate(formData);
+        setSelectedMusician(undefined);
+        setBookCompleted(true);
     };
 
     if (isLoading) {
@@ -66,6 +70,11 @@ export default function MusicianList() {
                 onClose={() => setSelectedMusician(undefined)}
                 onSubmit={handleBookSession}
             ></BookingFormDrawer>
+
+            <BookingCompletedDrawer
+                enabled={bookCompleted}
+                onClose={() => setBookCompleted(false)}
+            ></BookingCompletedDrawer>
         </>
     );
 }
