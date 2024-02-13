@@ -70,7 +70,7 @@ export default function BookingFormDrawer({
                     className="drawer-overlay"
                     onClick={onClose}
                 ></label>
-                <div className="menu p-4 w-80 min-h-full bg-base-200 text-base-content flex flex-col justify-between">
+                <div className="bg-white menu p-8 w-80 min-h-full text-base-content flex flex-col justify-between">
                     {/* Sidebar content here */}
                     {buildContents(musician, availability)}
                 </div>

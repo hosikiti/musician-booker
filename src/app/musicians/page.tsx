@@ -12,7 +12,7 @@ export default async function MusiciansPage() {
     await queryClient.prefetchQuery({
         queryKey: ['fetchMusicians'],
         queryFn: getMusicians,
-        retry: 1,
+        retry: 1, // this is required to render the page correctly on the server
     });
 
     return (

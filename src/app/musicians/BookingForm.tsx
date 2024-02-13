@@ -47,7 +47,7 @@ export default function BookingForm({
                         <input
                             {...register('userName', { required: true })}
                             type="text"
-                            className="input input-bordered"
+                            className="input"
                             placeholder='e.g. "John Doe"'
                             data-testid="userName"
                         ></input>
@@ -62,7 +62,7 @@ export default function BookingForm({
                             {availableDates.map((date) => {
                                 const selected = date === selectedDate;
                                 const selectedStyle = 'btn-primary';
-                                const unselectedStyle = 'btn-outline';
+                                const unselectedStyle = 'btn';
 
                                 const label = datefns.format(date, 'HH:mm');
 
@@ -98,7 +98,7 @@ export default function BookingForm({
                     >
                         <select
                             {...register('service', { required: true })}
-                            className="select select-bordered w-full max-w-xs"
+                            className="select w-full max-w-xs"
                             data-testid="service"
                         >
                             <option value={''}>Select Instrument ...</option>
