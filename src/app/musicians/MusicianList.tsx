@@ -36,10 +36,15 @@ export default function MusicianList() {
                 bookedDate: data.date,
             });
         },
-        onSuccess: () => {
+        onSuccess: async () => {
             setSelectedMusician(undefined);
             setBookCompleted(true);
-            queryClient.invalidateQueries({ queryKey: ['getRecentBookings'] });
+            await queryClient.invalidateQueries({
+                queryKey: ['getRecentBookings'],
+            });
+            await queryClient.invalidateQueries({
+                queryKey: ['fetchMusicianAvailability', selectedMusician?.id],
+            });
         },
         onError: (error) => {
             // TODO

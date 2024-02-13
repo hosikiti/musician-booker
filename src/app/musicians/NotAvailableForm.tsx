@@ -1,7 +1,5 @@
 import ElevatedButton from '@/components/button/ElevatedButton';
 import OutlineButton from '@/components/button/OutlineButton';
-import { Musician } from '@/types/musicians';
-import { on } from 'events';
 
 type NotAvailableFormProps = {
     musicianName: string;

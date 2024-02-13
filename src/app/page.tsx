@@ -1,4 +1,4 @@
-import MainLayout from '@/layouts/MainLayouts';
+import MainLayout from '@/layouts/MainLayout';
 import MusiciansPage from './musicians/page';
 
 export default function Home() {
