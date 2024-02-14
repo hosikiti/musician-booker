@@ -2,6 +2,7 @@ import { createErrorResponse } from '@/app/api/common';
 import { usePrismaInRoute } from '@/lib/prisma';
 import { Booking } from '@/types';
 import { HttpStatusCode } from 'axios';
+import * as datefns from 'date-fns';
 
 export interface GetBookingsRequest {
     limit: number;
@@ -113,7 +114,7 @@ function validatePostRequest(body: PostBookingRequest) {
         );
     }
 
-    if (!body.bookedDate) {
+    if (!datefns.isValid(new Date(body.bookedDate))) {
         return createErrorResponse('invalid date', HttpStatusCode.BadRequest);
     }
 

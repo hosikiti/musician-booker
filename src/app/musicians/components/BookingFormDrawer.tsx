@@ -8,7 +8,7 @@ import Drawer from '@/components/drawer/Drawer';
 import LoadingSpinner from '@/components/loading/LoadingSpinner';
 import { getMusicianAvailability } from '@/lib/apiClient/availability/getMusicianAvailability';
 import { Musician } from '@/types';
-import { dataTagSymbol, useQueries, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 type BookingFormDrawerProps = {
     musician?: Musician;
