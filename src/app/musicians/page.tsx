@@ -1,5 +1,5 @@
-import MusicianList from '@/app/musicians/MusicianList';
-import RecentBookedSessionList from '@/app/musicians/RecentBookedSessionList';
+import MusicianList from '@/app/musicians/components/MusicianList';
+import RecentBookedSessionList from '@/app/musicians/components/RecentBookedSessionList';
 import { getMusicians } from '@/lib/apiClient/musicians/getMusicians';
 import {
     HydrationBoundary,

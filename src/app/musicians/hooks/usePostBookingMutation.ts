@@ -1,4 +1,4 @@
-import { BookingFormValues } from '@/app/musicians/BookingForm';
+import { BookingFormValues } from '@/app/musicians/components/BookingForm';
 import { postBooking } from '@/lib/apiClient/bookings/postBooking';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';

@@ -1,5 +1,5 @@
 'use client';
-import RecentBookedSessionCard from '@/app/musicians/RecentBookedSessionCard';
+import RecentBookedSessionCard from '@/app/musicians/components/RecentBookedSessionCard';
 import Alert from '@/components/alert/Alert';
 import LoadingSpinner from '@/components/loading/LoadingSpinner';
 import { getBookings } from '@/lib/apiClient/bookings/getBookings';

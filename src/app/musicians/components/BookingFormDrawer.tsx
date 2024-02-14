@@ -1,6 +1,8 @@
 import { MusicianAvailabilityResponse } from '@/app/api/musicians/[id]/availability/route';
-import BookingForm, { BookingFormValues } from '@/app/musicians/BookingForm';
-import NotAvailableForm from '@/app/musicians/NotAvailableForm';
+import BookingForm, {
+    BookingFormValues,
+} from '@/app/musicians/components/BookingForm';
+import NotAvailableForm from '@/app/musicians/components/NotAvailableForm';
 import Alert from '@/components/alert/Alert';
 import Drawer from '@/components/drawer/Drawer';
 import LoadingSpinner from '@/components/loading/LoadingSpinner';

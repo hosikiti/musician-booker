@@ -5,11 +5,11 @@ import { useState } from 'react';
 import BookingFormDrawer from './BookingFormDrawer';
 import { Musician } from '@/types';
 import { getMusicians } from '@/lib/apiClient/musicians/getMusicians';
-import { BookingFormValues } from '@/app/musicians/BookingForm';
-import BookingCompletedDrawer from '@/app/musicians/BookingCompletedDrawer';
+import { BookingFormValues } from '@/app/musicians/components/BookingForm';
+import BookingCompletedDrawer from '@/app/musicians/components/BookingCompletedDrawer';
 import LoadingSpinner from '@/components/loading/LoadingSpinner';
 import Alert from '@/components/alert/Alert';
-import { usePostBookingMutation } from '@/app/musicians/hook/usePostBookingMutation';
+import { usePostBookingMutation } from '@/app/musicians/hooks/usePostBookingMutation';
 
 export default function MusicianList() {
     const [selectedMusician, setSelectedMusician] = useState<

@@ -27,7 +27,7 @@ Musician Booker is a simple web platform that allows music creators / administra
 
 The project tests complex logic and components using Jest and React Testing Library. For now, the following elements are tested:
 
-- `/src/app/musicians/BookingForm.tsx` for ensuring form validation logic
+- `/src/app/musicians/components/BookingForm.tsx` for ensuring form validation logic
 - `/src/lib/date.ts` for ensuring date array conversion logic
 
 ## changed 
