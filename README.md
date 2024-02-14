@@ -35,6 +35,7 @@ The project tests complex logic and components using Jest and React Testing Libr
 - supported responsive design
 - added validation for the booking form
 - added "date" in addition to "time" for booking
+- handled when no available date is found on the selected musician
 - changed "Sessions booked by people" to only show the recent 5 sessions to avoid the list being too long
 
 ## Check List  
