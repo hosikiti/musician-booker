@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "migrate": "npx prisma migrate dev --name init",
+    "initdb": "rm -rf ./prisma/migrations && rm -rf ./prisma/dev.db && npx prisma migrate dev --name init && npm run seed",
     "seed": "ts-node --project tsconfig.local.json ./prisma/seed.ts",
     "test": "jest"
   },
