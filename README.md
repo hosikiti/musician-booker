@@ -21,17 +21,27 @@ Musician Booker is a simple web platform that allows music creators / administra
 1. `npm run seed` to insert initial data
 1. `npm run dev` to start the development server
 
+## Architecture 
+
+## Testing Strategy
+
+The project tests complex logic and components using Jest and React Testing Library. For now, the following elements are tested:
+
+- `/src/app/musicians/BookingForm.tsx` for ensuring form validation logic
+- `/src/lib/date.ts` for ensuring date array conversion logic
+
 ## changed 
 
 - used a drawler to show the booking form without breaking the layout
 - supported responsive design
+- added validation for the booking form
 - added "date" in addition to "time" for booking
 - changed "Sessions booked by people" to only show the recent 5 sessions to avoid the list being too long
 
 ## Check List  
 
 - [x] add unit tests
-- [ ] API error handling
+- [x] API error handling
 - [ ] refactor the code
 - [ ] add more comments
 - [ ] write README
