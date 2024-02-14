@@ -4,10 +4,15 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import toast from 'react-hot-toast';
 
-export const usePostBookingMutation = (
-    musicianId?: number,
-    onSuccess?: () => void
-) => {
+type usePostBookingMutationProps = {
+    musicianId?: number;
+    onSuccess?: () => void;
+};
+
+export const usePostBookingMutation = ({
+    musicianId,
+    onSuccess,
+}: usePostBookingMutationProps) => {
     const queryClient = useQueryClient();
     const postBookingMutation = useMutation<
         void,

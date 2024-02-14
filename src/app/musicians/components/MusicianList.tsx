@@ -21,13 +21,13 @@ export default function MusicianList() {
         queryFn: getMusicians,
     });
 
-    const postBookingMutation = usePostBookingMutation(
-        selectedMusician?.id,
-        async () => {
+    const postBookingMutation = usePostBookingMutation({
+        musicianId: selectedMusician?.id,
+        onSuccess: () => {
             setSelectedMusician(undefined);
             setBookCompleted(true);
-        }
-    );
+        },
+    });
 
     const handleBookSession = (formData: BookingFormValues) => {
         postBookingMutation.mutate(formData);
