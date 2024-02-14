@@ -16,11 +16,12 @@ export const getHourLabel = (date: string): string => {
     return datefns.format(date, 'HH:mm');
 };
 
-export const getDateHours = (dates: string[]): DateHours[] => {
+// returns an array of objects with dateLabel and hourLabels for the given sorted dates
+export const getDateHours = (sortedDates: string[]): DateHours[] => {
     let currentDate: DateHours | null = null;
     const dateHours: DateHours[] = [];
 
-    dates.forEach((date) => {
+    sortedDates.forEach((date) => {
         const dateLabel = getDateLabel(date);
         if (!currentDate || currentDate.dateLabel !== dateLabel) {
             currentDate = {

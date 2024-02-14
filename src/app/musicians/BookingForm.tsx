@@ -42,12 +42,14 @@ export default function BookingForm({
     return (
         <>
             <form onSubmit={handleSubmit(submitHandler)}>
+                {/* header */}
                 <div className="flex flex-row gap-2 items-start border-b mb-8">
                     <Avatar src={musician.avatar} alt={musician.name} />
                     <span className="text-lg font-bold mb-4">
                         {musician.name}
                     </span>
                 </div>
+                {/* form fields */}
                 <div className="flex flex-col gap-4">
                     <FieldWrapper
                         label="What's your name?"

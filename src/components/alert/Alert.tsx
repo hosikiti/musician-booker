@@ -1,11 +1,16 @@
 type AlertProps = {
     children: React.ReactNode;
+    type?: 'success' | 'error';
 };
 
-export default function Alert({ children }: AlertProps) {
+const baseClasses = 'p-4 border rounded-lg';
+const typeClasses = {
+    success: 'border-brand-300 bg-brand-25',
+    error: 'border-red-300 bg-red-50',
+};
+
+export default function Alert({ children, type = 'success' }: AlertProps) {
     return (
-        <div className="p-4 border border-brand-300 rounded-lg bg-brand-25">
-            {children}
-        </div>
+        <div className={`${baseClasses} ${typeClasses[type]}`}>{children}</div>
     );
 }

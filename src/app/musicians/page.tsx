@@ -28,7 +28,9 @@ export default async function MusiciansPage() {
                     <MusicianList></MusicianList>
                 </div>
                 <div className="py-8">
-                    <h2 className="font-bold">Sessions booked by people</h2>
+                    <h2 className="font-bold">
+                        Recent 5 Sessions booked by people
+                    </h2>
                     <RecentBookedSessionList></RecentBookedSessionList>
                 </div>
             </section>

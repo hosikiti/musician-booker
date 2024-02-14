@@ -1,16 +1,15 @@
 'use client';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import axios, { AxiosError } from 'axios';
+import { useQuery } from '@tanstack/react-query';
 import MusicianCard from './MusicianCard';
 import { useState } from 'react';
 import BookingFormDrawer from './BookingFormDrawer';
 import { Musician } from '@/types';
 import { getMusicians } from '@/lib/apiClient/musicians/getMusicians';
-import { PostBookingRequest } from '@/app/api/bookings/route';
-import { postBooking } from '@/lib/apiClient/bookings/postBooking';
 import { BookingFormValues } from '@/app/musicians/BookingForm';
 import BookingCompletedDrawer from '@/app/musicians/BookingCompletedDrawer';
 import LoadingSpinner from '@/components/loading/LoadingSpinner';
+import Alert from '@/components/alert/Alert';
+import { usePostBookingMutation } from '@/app/musicians/hook/usePostBookingMutation';
 
 export default function MusicianList() {
     const [selectedMusician, setSelectedMusician] = useState<
@@ -21,35 +20,14 @@ export default function MusicianList() {
         queryKey: ['fetchMusicians'],
         queryFn: getMusicians,
     });
-    const queryClient = useQueryClient();
 
-    const postBookingMutation = useMutation<
-        void,
-        AxiosError,
-        BookingFormValues
-    >({
-        mutationFn: async (data: BookingFormValues) => {
-            await postBooking({
-                musicianId: data.musicianId,
-                userName: data.userName,
-                requestService: data.service,
-                bookedDate: data.date,
-            });
-        },
-        onSuccess: async () => {
+    const postBookingMutation = usePostBookingMutation(
+        selectedMusician?.id,
+        async () => {
             setSelectedMusician(undefined);
             setBookCompleted(true);
-            await queryClient.invalidateQueries({
-                queryKey: ['getRecentBookings'],
-            });
-            await queryClient.invalidateQueries({
-                queryKey: ['fetchMusicianAvailability', selectedMusician?.id],
-            });
-        },
-        onError: (error) => {
-            // TODO
-        },
-    });
+        }
+    );
 
     const handleBookSession = (formData: BookingFormValues) => {
         postBookingMutation.mutate(formData);
@@ -60,7 +38,7 @@ export default function MusicianList() {
     }
 
     if (isError) {
-        return <div>error!</div>;
+        return <Alert type="error">Failed to loading data</Alert>;
     }
 
     return (
