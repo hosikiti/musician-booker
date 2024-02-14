@@ -12,7 +12,7 @@ describe('BookingForm', () => {
         const handleSubmit = jest.fn();
         const musician: Musician = {
             id: 1,
-            name: 'John Doe',
+            name: 'Fret Mason',
             services: [
                 {
                     name: 'Baroque Violin',
@@ -55,7 +55,7 @@ describe('BookingForm', () => {
         };
     };
 
-    const inputUserName = async (name = 'John Doe') => {
+    const inputUserName = async (name = 'Fret Mason') => {
         const nameInput = screen.getByTestId('userName');
         await userEvent.clear(nameInput);
         await userEvent.type(nameInput, name);
@@ -108,7 +108,7 @@ describe('BookingForm', () => {
             date: availableDates[0],
             musicianId: musician.id,
             service: musician.services[0].name,
-            userName: 'John Doe',
+            userName: 'Fret Mason',
         });
     });
 

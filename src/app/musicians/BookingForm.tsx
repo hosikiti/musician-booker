@@ -1,9 +1,10 @@
 import { Musician } from '@/types';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, UseFormRegisterReturn, useForm } from 'react-hook-form';
 import ElevatedButton from '@/components/button/ElevatedButton';
 import { FieldWrapper } from '@/components/form/FieldWrapper';
 import Avatar from '@/components/avatar/Avatar';
 import { getDateHours } from '@/lib/date';
+import Chip from '@/components/form/Chip';
 
 export interface BookingFormValues {
     musicianId: number;
@@ -68,7 +69,7 @@ export default function BookingForm({
                             })}
                             type="text"
                             className="input"
-                            placeholder='e.g. "John Doe"'
+                            placeholder='e.g. "Fret Mason"'
                             data-testid="userName"
                         ></input>
                     </FieldWrapper>
@@ -86,29 +87,21 @@ export default function BookingForm({
                                         {dateHour.hourLabels.map((hour) => {
                                             const selected =
                                                 hour.date === selectedDate;
-                                            const selectedStyle = 'btn-primary';
-                                            const unselectedStyle = 'btn';
 
                                             return (
-                                                <label
+                                                <Chip
                                                     key={hour.date}
-                                                    className={`btn ${
-                                                        selected
-                                                            ? selectedStyle
-                                                            : unselectedStyle
-                                                    }`}
-                                                >
-                                                    {hour.label}
-                                                    <input
-                                                        type="radio"
-                                                        className="hidden"
-                                                        value={hour.date}
-                                                        {...register('date', {
+                                                    selected={selected}
+                                                    label={hour.label}
+                                                    value={hour.date}
+                                                    registration={register(
+                                                        'date',
+                                                        {
                                                             required:
                                                                 'Select at least one date',
-                                                        })}
-                                                    ></input>
-                                                </label>
+                                                        }
+                                                    )}
+                                                ></Chip>
                                             );
                                         })}
                                     </div>
