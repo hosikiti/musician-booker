@@ -1,11 +1,10 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import BookingForm, {
-    BOOKING_FORM_MAX_NAME_LENGTH,
-} from '../app/musicians/BookingForm';
-import { Musician } from '../types';
+import BookingForm, { BOOKING_FORM_MAX_NAME_LENGTH } from '../BookingForm';
+import { Musician } from '../../../types';
 import userEvent from '@testing-library/user-event';
 import * as datefns from 'date-fns';
+import React from 'react';
 
 describe('BookingForm', () => {
     // prepare test data and render the form

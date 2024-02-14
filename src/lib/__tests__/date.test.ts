@@ -1,4 +1,4 @@
-import { getDateHours } from './date';
+import { getDateHours } from '../date';
 
 describe('getDateHours', () => {
     it('should return an array of DateHours objects', () => {
