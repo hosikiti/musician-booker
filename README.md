@@ -76,5 +76,5 @@ The following features are added to enhance the functionality of this platform:
 - [x] API error handling
 - [x] refactor the code
 - [x] add more comments
-- [x] rendering optimization
+- [x] rendering performance optimization
 - [x] write README
