@@ -1,8 +1,4 @@
-import {
-    FieldValues,
-    UseFormRegister,
-    UseFormRegisterReturn,
-} from 'react-hook-form';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 const selectedStyle = 'btn-primary';
 const unselectedStyle = 'btn';
