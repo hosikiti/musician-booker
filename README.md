@@ -12,7 +12,7 @@ Musician Booker is a simple web platform that allows music creators / administra
 - React Hook Form for quick and meticulous form validation
 - DaisyUI for decent UI components, including drawer and avatar
 - date-fns for date & hour formatting
-- React Hot Toast for quick and easy error messages
+- React Hot Toast for easily noticable error messages
 
 ## Getting Started
 
