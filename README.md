@@ -19,7 +19,7 @@ Musician Booker is a simple web platform that allows music creators / administra
 1. `npm install` to install dependencies
 1. `npm run initdb` to initialize database with sample data
 1. `npm run dev` to start the development server
-1. Open [http://localhost:3000](http://localhost:3000) with your browser.
+1. Open [http://localhost:3000](http://localhost:3000) with your browser
 
 ## Architecture / Principles
 
