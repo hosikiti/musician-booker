@@ -4,7 +4,7 @@ import ElevatedButton from '@/components/button/ElevatedButton';
 import { FieldWrapper } from '@/components/form/FieldWrapper';
 import Avatar from '@/components/avatar/Avatar';
 import { getDateHours } from '@/lib/date';
-import Chip from '@/components/form/Chip';
+import BookingDateSelect from '@/app/musicians/components/BookingDateSelect';
 
 export interface BookingFormValues {
     musicianId: number;
@@ -26,10 +26,8 @@ export default function BookingForm({
     availableDates,
     musician,
 }: BookingFormProps) {
-    const { register, handleSubmit, watch, formState } =
+    const { register, handleSubmit, formState, control } =
         useForm<BookingFormValues>();
-
-    const selectedDate = watch('date');
 
     const submitHandler: SubmitHandler<BookingFormValues> = (data) => {
         onSubmit({
@@ -77,37 +75,12 @@ export default function BookingForm({
                         label="When?"
                         errorMessage={formState.errors.date?.message}
                     >
-                        {dateHours.map((dateHour) => {
-                            return (
-                                <div key={dateHour.dateLabel}>
-                                    <div className="mb-2">
-                                        {dateHour.dateLabel}
-                                    </div>
-                                    <div className="flex flex-wrap gap-2 mb-2">
-                                        {dateHour.hourLabels.map((hour) => {
-                                            const selected =
-                                                hour.date === selectedDate;
-
-                                            return (
-                                                <Chip
-                                                    key={hour.date}
-                                                    selected={selected}
-                                                    label={hour.label}
-                                                    value={hour.date}
-                                                    registration={register(
-                                                        'date',
-                                                        {
-                                                            required:
-                                                                'Select at least one date',
-                                                        }
-                                                    )}
-                                                ></Chip>
-                                            );
-                                        })}
-                                    </div>
-                                </div>
-                            );
-                        })}
+                        <BookingDateSelect
+                            dateHours={dateHours}
+                            register={register}
+                            name="date"
+                            control={control}
+                        />
                     </FieldWrapper>
                     <FieldWrapper
                         label="Which Instrument?"

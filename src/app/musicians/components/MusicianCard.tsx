@@ -1,5 +1,6 @@
 import { Musician } from '@/types';
 import Image from 'next/image';
+import React from 'react';
 
 type MusicianCardProps = {
     musician: Musician;
@@ -29,3 +30,7 @@ export default function MusicianCard({ musician, onClick }: MusicianCardProps) {
         </div>
     );
 }
+
+export const MemoMusicianCard = React.memo(MusicianCard, (prev, next) => {
+    return prev.musician.id === next.musician.id;
+});

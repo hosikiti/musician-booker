@@ -1,6 +1,6 @@
 'use client';
 import { useQuery } from '@tanstack/react-query';
-import MusicianCard from './MusicianCard';
+import MusicianCard, { MemoMusicianCard } from './MusicianCard';
 import { useState } from 'react';
 import BookingFormDrawer from './BookingFormDrawer';
 import { Musician } from '@/types';
@@ -45,13 +45,13 @@ export default function MusicianList() {
         <>
             <div className="flex flex-wrap gap-8 items-start">
                 {data?.result.map((musician) => (
-                    <MusicianCard
+                    <MemoMusicianCard
                         key={musician.id}
                         musician={musician}
                         onClick={() => {
                             setSelectedMusician(musician);
                         }}
-                    ></MusicianCard>
+                    ></MemoMusicianCard>
                 ))}
             </div>
 
