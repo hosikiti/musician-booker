@@ -4,7 +4,7 @@ export interface MusicianAvailabilityResponse {
     availableDates: string[];
 }
 
-// returns a specified musician's schedule
+// returns a specified musician's available schedule
 export async function GET(
     request: Request,
     { params }: { params: { id: string } }

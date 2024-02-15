@@ -16,6 +16,7 @@ export interface GetBookingsResponse {
 const GET_BOOKINGS_DEFAULT_LIMIT = 5;
 const GET_BOOKINGS_DEFAULT_OFFSET = 0;
 
+// returns a list of bookings (sessions)
 export async function GET(request: Request) {
     return usePrismaInRoute(async (prisma) => {
         const { searchParams } = new URL(request.url);
@@ -50,6 +51,7 @@ export interface PostBookingRequest {
     bookedDate: string;
 }
 
+// creates a new booking (session)
 export async function POST(req: Request) {
     return usePrismaInRoute(async (prisma) => {
         const body = (await req.json()) as PostBookingRequest;

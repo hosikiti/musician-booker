@@ -5,6 +5,7 @@ export interface MusiciansResponse {
     result: Musician[];
 }
 
+// returns a list of musicians
 export async function GET(request: Request) {
     return usePrismaInRoute(async (prisma) => {
         const musicians = await prisma.musician.findMany({
