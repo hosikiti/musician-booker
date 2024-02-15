@@ -14,6 +14,9 @@ export async function GET(request: Request) {
             include: {
                 services: true,
             },
+            orderBy: {
+                name: 'asc',
+            },
         });
         const resp: MusiciansResponse = {
             result: musicians,
