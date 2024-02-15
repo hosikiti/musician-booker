@@ -32,7 +32,7 @@ export default function BookingDateSelect({
                                 selected={selected}
                                 label={hour.label}
                                 value={hour.date}
-                                registration={register('date', {
+                                registration={register(name, {
                                     required: 'Select at least one date',
                                 })}
                             ></Chip>
