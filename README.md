@@ -1,18 +1,18 @@
 # Musician Booker
 
-Musician Booker is a simple web platform that allows music creators / administrators to book sessions with top-notch musicians.
+Musician Booker is a simple web platform that allows music creators / administrators to browse top-notch musicians on the platform and book sessions with them.
 
 ## Technologies Used
 
-- Next.js for efficiently serviing both front-end UIs and back-end APIs at the same time
-- Tailwind CSS for efficient styling and organized components
-- Prisma (ORM) + SQLite for local database and easy data manipulation
-- React Query for effectively handling API states (loading, error, success) and caching
-- Axios for making and handling REST API requests, including error handling
-- React Hook Form for quick and meticulous form validation
-- DaisyUI for decent UI components, including drawer and avatar
-- date-fns for date & hour formatting
-- React Hot Toast for easily noticable error messages
+- **Next.js** for efficiently serving both front-end UIs and back-end APIs at the same time
+- **Tailwind CSS** for efficient styling and organized components
+- **Prisma** (ORM) + **SQLite** for local database and safe data manipulation with statically typed queries
+- **React Query** for effectively handling API states (loading, error, success) and caching
+- **Axios** for making and handling REST API requests, including error handling
+- **React Hook Form** for quick and meticulous form validation
+- **DaisyUI** for decent UI components, including drawer and avatar
+- **date-fns** for date & hour formatting
+- **React Hot Toast** for easily noticable error messages
 
 ## Getting Started
 
@@ -21,11 +21,16 @@ Musician Booker is a simple web platform that allows music creators / administra
 1. `npm run dev` to start the development server
 1. Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-## Architecture 
+## Architecture / Principles
+
+- Uses clean architecture principles to separate business logic from the presentation layer. Business logic is primarily written in API routes and hooks, whereas presentation logic is written in React components.
+- Uses useState and React Query for local and remote state management. Since the database can be considered as a Single Source of Truth (SSOT), no global state management library like Redux is used to keep the project simple.
+- Common components are placed in `/src/app/components`, whereas components regarding each feature are placed in `/src/app/[feature]/components`.
+- Follows YAGNI (You Ain't Gonna Need It) principle to avoid over-engineering and keep the project as minimal as possible, making it easier to understand, maintain and onboard new developers.
 
 ## Testing Strategy
 
-The project includes unit testing for complex logic and components using Jest and React Testing Library. For now, the following elements are tested:
+The project includes unit testing for complex business logic and components using Jest and React Testing Library. Tests files are placed in the `__tests__` folder in the same directory as the file being tested. For now, the following elements are tested:
 
 - `/src/app/musicians/components/BookingForm.tsx` for ensuring form validation logic
 - `/src/lib/date.ts` for ensuring date array conversion logic
@@ -60,6 +65,7 @@ The following features are added to enhance the functionality of this platform:
 - Sorting and filtering musicians list by name, instrument, and availability
 - A default instrument for each musician to display in the list (currently, the first instrument is displayed, but it may not be the main instrument for the musician)
 - Using CDNs for dynamically resizing avatar images for better performance
+- Using a different database for production, such as PostgreSQL or MySQL, for better performance and scalability
 - Multi-language support for international users
 - Dark mode support for better user experience
 
@@ -69,4 +75,4 @@ The following features are added to enhance the functionality of this platform:
 - [x] API error handling
 - [x] refactor the code
 - [x] add more comments
-- [ ] write README
+- [x] write README
