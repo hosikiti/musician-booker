@@ -25,7 +25,7 @@ Musician Booker is a simple web platform that allows music creators / administra
 
 - Uses clean architecture principles to separate business logic from the presentation layer. Business logic is primarily written in API routes and hooks, whereas presentation logic is written in React components.
 - Uses useState and React Query for local and remote state management. Since the database can be considered as a Single Source of Truth (SSOT), no global state management library like Redux is used to keep the project simple.
-- Common components are placed in `/src/app/components`, whereas components regarding each feature are placed in `/src/app/[feature]/components`.
+- Stores shared components in `/src/app/components` and feature-specific components in `/src/app/[feature]/components`.
 - Follows YAGNI (You Ain't Gonna Need It) principle to avoid over-engineering and keep the project as minimal as possible, making it easier to understand, maintain and onboard new developers.
 
 ## Testing Strategy
@@ -62,6 +62,7 @@ The following features are added to enhance the functionality of this platform:
 
 - Authentication to allow only authorized users to book sessions
 - Musicians list pagination to avoid list being too long and slow
+- List virtualization to further improve rendering performance when the list is long
 - Sorting and filtering musicians list by name, instrument, and availability
 - A default instrument for each musician to display in the list (currently, the first instrument is displayed, but it may not be the main instrument for the musician)
 - Using CDNs for dynamically resizing avatar images for better performance
